@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加载中...</title>
+    <link rel="stylesheet" href="/css/Loading.css">
+</head>
+<body>
+    <div class="loading">
+        <!-- 自定义属性i,通过var调用 -->
+        <span style="--i:1;"></span>
+        <span style="--i:2;"></span>
+        <span style="--i:3;"></span>
+        <span style="--i:4;"></span>
+        <span style="--i:5;"></span>
+        <span style="--i:6;"></span>
+        <span style="--i:7;"></span>
+    </div>
+    <!-- 自定义滤镜 -->
+    <svg>
+        <!-- 使用filter标签定义svg滤镜 -->
+        <filter id="gooey">
+            <!-- 创建模糊滤镜 -->
+            <feGaussianBLur in="SourceGraphic" stdDeviation="10">
+            </feGaussianBLur>
+            <!-- feColorMatrix是滤镜中的一种类型，使用矩阵来影响颜色的每个通道
+             （基于RGBA），可以将其想象成photoshop中的通道编辑 -->
+            <feColorMatrix values="
+                1 0 0 0 0
+                0 1 0 0 0
+                0 0 1 0 0
+                0 0 0 20 -10
+            "></feColorMatrix>
+        </filter>
+        <!-- 调用 -->
+    </svg>
+</body>
+<script>
+    var url = new URLSearchParams(window.location.search).get('url');
+    setTimeout(function(){
+        window.location.href = url;
+    } , 2000);
+</script>
+</html>
